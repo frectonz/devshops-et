@@ -38,3 +38,4 @@ link_pool-*.tar
 npm-debug.log
 /assets/node_modules/
 
+.devenv
