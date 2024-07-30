@@ -6,6 +6,8 @@
 , inotify-tools
 , terminal-notifier
 , darwin
+, elixir-ls
+, nodePackages
 , ...
 }:
 mkShell {
@@ -13,6 +15,10 @@ mkShell {
     myEnv.beamPackages.erlang
     myEnv.beamPackages.elixir
     myEnv.nodePackages.nodejs
+
+    elixir-ls
+    nodePackages.typescript-language-server
+    nodePackages."@tailwindcss/language-server"
   ] ++
   # Linux only
   lib.optionals stdenv.isLinux [

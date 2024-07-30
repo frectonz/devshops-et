@@ -2,4 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+.box-shadow {
+  box-shadow: 5px 5px;
+}
+
 /* This file is for your main application CSS */
