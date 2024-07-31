@@ -1,4 +1,4 @@
-<section class="border border-black my-1 px-4 py-20 md:container md:mx-auto bg-green-300 grid  grid-cols-1 md:grid-cols-2 gap-4">
+<section class="border border-black my-1 px-4 py-20 md:container md:mx-auto bg-green-300 grid grid-cols-1 md:grid-cols-2 gap-4">
   <div class="flex items-start justify-center flex-col gap-8">
     <h1 class="text-5xl">A Catalog of Ethiopian Software Development Companies.</h1>
     <p class="text-xl">Easily find your trusted partner for your next project.</p>
@@ -10,6 +10,58 @@
     </div>
   </div>
   <div class="hidden md:flex items-center justify-center">
-    <img src={~p"/images/EthiopianShield.svg"} width="500" />
+    <img src={~p"/images/EthiopianShield.svg"} width="500" class="drop-shadow-2xl" />
   </div>
+</section>
+
+<section class="my-10 md:container md:mx-auto grid gap-6">
+  <h1 class="px-4 text-5xl">Government Software Providers</h1>
+
+  <section class="p-4 grid gap-6">
+    <%= for company <- @companies do %>
+      <article class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <%= if company.website do %>
+          <a href={company.website.url} target="_blank">
+            <img
+              src={~p"/images/companies/#{company.website.screenshot}"}
+              class="border border-black w-full box-shadow"
+            />
+          </a>
+        <% else %>
+          <div class="bg-violet-300 border border-black box-shadow h-[350px]" />
+        <% end %>
+        <div class="border border-black flex flex-col justify-between">
+          <div>
+            <h1 class="p-4 border-b border-black text-3xl bg-green-300"><%= company.name %></h1>
+            <div class="p-4 grid gap-2">
+              <div class="flex gap-4">
+                <.icon name="hero-map-pin" />
+                <p class="text-lg"><%= company.location %></p>
+              </div>
+
+              <div class="flex gap-4">
+                <.icon name="hero-envelope" />
+                <p class="text-lg"><%= company.email %></p>
+              </div>
+
+              <div class="flex gap-4">
+                <.icon name="hero-phone" />
+                <div>
+                  <%= for p <- company.phone do %>
+                    <p class="text-lg"><%= p %></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 border-t border-black flex gap-4 bg-green-300">
+            <%= for s <- company.socials do %>
+              <a href={s.url} target="_blank"><.icon name={s.name} class="w-6 h-6" /></a>
+            <% end %>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  </section>
 </section>
