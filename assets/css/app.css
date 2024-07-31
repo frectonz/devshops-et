@@ -6,4 +6,8 @@
   box-shadow: 5px 5px;
 }
 
+.animate-spin-slow {
+  animation: spin 300s linear infinite;
+}
+
 /* This file is for your main application CSS */
