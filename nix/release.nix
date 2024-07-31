@@ -1,12 +1,10 @@
 { lib, myEnv, nix-gitignore, ... }:
 let
-  # TODO: adjust pname, version and src
-  pname = "example";
+  pname = "devshopset";
   version = "0.1.0";
   src = nix-gitignore.gitignoreSource [
     "/flake.nix"
     "/flake.lock"
-    # TODO: add extra patterns besides ones specified by .gitignore, such as /fly.toml
   ] ../.;
 
   inherit (myEnv.beamPackages.minimal) fetchMixDeps buildMixRelease;
@@ -15,16 +13,15 @@ let
   mixDeps = fetchMixDeps {
     pname = "${pname}-mix-deps";
     inherit version src;
-    # TODO: replace fake hash
-    hash = lib.fakeHash;
+    hash = "sha256-3bjutPf9qgZtoI1DLClvuMC9Q+WlL4Xy0hDWcLFfSc4=";
+    HEX_HTTP_TIMEOUT = 10000;
   };
 
   npmDeps = fetchNpmDeps {
     pname = "${pname}-npm-deps";
     inherit version;
     src = "${src}/assets";
-    # TODO: replace fake hash
-    hash = lib.fakeHash;
+    hash = "sha256-lY2AzwGAHylb/4qju6tskWXHdk/BuLfsBdmAmjcDm70=";
     postBuild = ''
       # fix broken local packages
       local_packages=(
@@ -32,6 +29,7 @@ let
         "phoenix_html"
         "phoenix_live_view"
       )
+      mkdir -p node_modules/
       for package in ''\${local_packages[@]}; do
         path=node_modules/$package
         if [[ -L $path ]]; then

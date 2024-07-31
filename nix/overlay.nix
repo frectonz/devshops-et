@@ -28,6 +28,7 @@ let
         npmDeps = fetchNpmDeps {
           name = "${pname}-cache-${version}";
           inherit src hash;
+          forceEmptyCache = true;
         };
         nativeBuildInputs = [ nodejs npmHooks.npmConfigHook ];
         postBuild = postBuild;
