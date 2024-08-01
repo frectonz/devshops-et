@@ -1,4 +1,4 @@
-{ lib, myEnv, nix-gitignore, ... }:
+{ lib, myEnv, nix-gitignore, tailwindcss, esbuild, ... }:
 let
   pname = "devshopset";
   version = "0.1.0";
@@ -56,4 +56,7 @@ buildMixRelease {
   postBuild = ''
     HOME=$(pwd) mix assets.deploy
   '';
+
+  MIX_ESBUILD_PATH = "${esbuild}/bin/esbuild";
+  MIX_TAILWIND_PATH = "${tailwindcss}/bin/tailwindcss";
 }

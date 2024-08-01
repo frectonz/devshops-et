@@ -17,5 +17,11 @@ config :swoosh, local: false
 # Do not print debug messages in production
 config :logger, level: :info
 
+# Expect an already installed tailwind.
+config :tailwind, path: System.get_env("MIX_TAILWIND_PATH")
+
+# Expect an already installed esbuild.
+config :esbuild, path: System.get_env("MIX_ESBUILD_PATH")
+
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.

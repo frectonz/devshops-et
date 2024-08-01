@@ -16,6 +16,7 @@ in
 }).streamLayeredImage {
   inherit name;
   tag = "latest";
+  created = "now";
 
   contents = [
     dockerTools.caCertificates

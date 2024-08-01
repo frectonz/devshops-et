@@ -321,5 +321,5 @@ defmodule DevshopsEt.Companies do
       %Company{}
 
   """
-  def get_company!(id), do: raise("TODO")
+  def get_company!(_id), do: raise("TODO")
 end
