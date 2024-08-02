@@ -1,18 +1,22 @@
 # DevshopsEt
 
-To start your Phoenix server:
+A Catalog of Ethiopian Software Companies.
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+![screenshot](./screenshot.png)
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Run with Docker
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+```sh
+docker pull frectonz/devshopset
+docker run -p 4000:4000 \
+            -e DATABASE_URL="ecto://user:password@host/database" \
+            -e SECRET_KEY_BASE="generate this with `mix phx.gen.secret`" \
+            frectonz/devshopset
+```
 
-## Learn more
+## Contributing
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```sh
+mix setup
+mix phx.server
+```
