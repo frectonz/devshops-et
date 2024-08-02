@@ -23,16 +23,20 @@
 
   <section class="p-4 grid gap-6">
     <%= for company <- @companies do %>
-      <article class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <article class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <%= if company.website do %>
-          <a href={company.website.url} target="_blank">
+          <a
+            href={company.website.url}
+            target="_blank"
+            class="border border-black w-full flex justify-center items-center box-shadow"
+          >
             <img
               src={~p"/images/companies/#{company.website.screenshot}"}
-              class="border border-black w-full box-shadow"
+              class="w-full h-full object-cover"
             />
           </a>
         <% else %>
-          <div class="bg-violet-300 border border-black box-shadow h-[350px]" />
+          <div class="bg-violet-300 border border-black box-shadow h-[270px]" />
         <% end %>
         <div class="border border-black flex flex-col justify-between">
           <div>
