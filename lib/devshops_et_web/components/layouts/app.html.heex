@@ -4,7 +4,7 @@
     <.icon name="hero-bars-3-bottom-right" class="w-12 h-12 cursor-pointer" />
   </div>
   <div class="w-full border-b border-t border-black">
-    <nav class="md:container md:mx-auto">
+    <nav class="md:container md:mx-auto flex justify-between">
       <table class="border-collapse">
         <tr>
           <td class="border-l border-r border-black px-4 py-1 hover:bg-black hover:text-white cursor-pointer">
@@ -18,6 +18,10 @@
           </td>
         </tr>
       </table>
+
+      <div class="border-l border-r border-black px-4 py-1">
+        <%= Application.spec(:devshops_et, :vsn) %>
+      </div>
     </nav>
   </div>
 </header>
