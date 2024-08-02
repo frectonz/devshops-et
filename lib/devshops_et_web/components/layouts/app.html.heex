@@ -23,3 +23,31 @@
 </header>
 <.flash_group flash={@flash} />
 <%= @inner_content %>
+<footer class="bg-green-300 border-t border-black" aria-labelledby="footer-heading">
+  <div class="md:container md:mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+      <div class="space-y-8 xl:col-span-1">
+        <p class="text-xl">
+          A community organized open source catalog of software companies in ethiopia.
+        </p>
+        <div class="flex space-x-4">
+          <a href="https://x.com/frectonz">
+            <.icon name="x" class="h-6 w-6" />
+          </a>
+
+          <a href="https://github.com/frectonz/devshops-et">
+            <.icon name="github" class="h-6 w-6" />
+          </a>
+
+          <a href="https://t.me/thefrectonz">
+            <.icon name="telegram" class="h-6 w-6" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-black pt-8">
+      <p class="text-base xl:text-center">MIT License Copyright &copy; 2024 Frectonz</p>
+    </div>
+  </div>
+</footer>
