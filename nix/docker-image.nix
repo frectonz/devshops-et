@@ -35,6 +35,6 @@ in
       "TERM=vt100"
     ];
     WorkingDir = release;
-    Cmd = [ "${release}/bin/server" "start" ];
+    Cmd = [ "sh" "-c" "${release}/bin/migrate && ${release}/bin/server start" ];
   };
 }
