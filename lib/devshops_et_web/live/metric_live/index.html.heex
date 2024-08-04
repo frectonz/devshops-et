@@ -1,0 +1,11 @@
+<section class="mt-10 mb-96 md:container md:mx-auto grid gap-6">
+  <.header class="text-3xl">
+    Listing Metrics
+  </.header>
+
+  <.table id="metrics" rows={@streams.metrics}>
+    <:col :let={{_id, metric}} label="Date"><%= metric.date %></:col>
+    <:col :let={{_id, metric}} label="Path"><%= metric.path %></:col>
+    <:col :let={{_id, metric}} label="Counter"><%= metric.counter %></:col>
+  </.table>
+</section>

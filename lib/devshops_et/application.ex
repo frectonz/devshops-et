@@ -10,6 +10,7 @@ defmodule DevshopsEt.Application do
     children = [
       DevshopsEtWeb.Telemetry,
       DevshopsEt.Repo,
+      DevshopsEt.Metrics,
       {DNSCluster, query: Application.get_env(:devshops_et, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: DevshopsEt.PubSub},
       # Start the Finch HTTP client for sending emails

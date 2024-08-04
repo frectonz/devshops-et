@@ -9,6 +9,7 @@ defmodule DevshopsEtWeb.Router do
     plug :put_root_layout, html: {DevshopsEtWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :bump_metric
   end
 
   pipeline :api do
@@ -33,6 +34,7 @@ defmodule DevshopsEtWeb.Router do
   scope "/dev" do
     pipe_through [:browser, :admins_only]
 
+    live "/metrics", DevshopsEtWeb.MetricLive.Index, :index
     live_dashboard "/dashboard", metrics: DevshopsEtWeb.Telemetry
     forward "/mailbox", Plug.Swoosh.MailboxPreview
   end
@@ -41,5 +43,16 @@ defmodule DevshopsEtWeb.Router do
     username = System.get_env("AUTH_USERNAME") || "dev"
     password = System.get_env("AUTH_PASSWORD") || "dev"
     Plug.BasicAuth.basic_auth(conn, username: username, password: password)
+  end
+
+  defp bump_metric(conn, _opts) do
+    register_before_send(conn, fn conn ->
+      if conn.status == 200 do
+        path = "/" <> Enum.join(conn.path_info, "/")
+        DevshopsEt.Metrics.bump(path)
+      end
+
+      conn
+    end)
   end
 end
