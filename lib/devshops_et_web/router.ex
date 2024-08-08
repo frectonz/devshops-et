@@ -32,11 +32,11 @@ defmodule DevshopsEtWeb.Router do
   #   pipe_through :api
   # end
 
-  scope "/dev", DevshopsEtWeb do
+  scope "/dev" do
     pipe_through [:browser, :admins_only]
 
-    live "/metrics", MetricLive.Index, :index
-    live "/submissions", SubmissionLive.Index, :index
+    live "/metrics", DevshopsEtWeb.MetricLive.Index, :index
+    live "/submissions", DevshopsEtWeb.SubmissionLive.Index, :index
     live_dashboard "/dashboard", metrics: DevshopsEtWeb.Telemetry
     forward "/mailbox", Plug.Swoosh.MailboxPreview
   end

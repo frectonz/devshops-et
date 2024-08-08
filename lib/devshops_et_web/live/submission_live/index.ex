@@ -2,7 +2,6 @@ defmodule DevshopsEtWeb.SubmissionLive.Index do
   use DevshopsEtWeb, :live_view
 
   alias DevshopsEt.Submissions
-  alias DevshopsEt.Submissions.Submission
 
   @impl true
   def mount(_params, _session, socket) do

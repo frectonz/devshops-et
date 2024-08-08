@@ -58,7 +58,7 @@ defmodule DevshopsEtWeb.SubmissionLive.Register do
 
   defp save_submission(socket, submission_params) do
     case Submissions.create_submission(submission_params) do
-      {:ok, submission} ->
+      {:ok, _submission} ->
         {:noreply,
          socket
          |> put_flash(:info, "Submission created successfully")

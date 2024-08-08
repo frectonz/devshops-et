@@ -371,7 +371,7 @@ defmodule DevshopsEtWeb.CoreComponents do
   def input(assigns) do
     ~H"""
     <div>
-      <.label for={@id} class="text-md"><%= @label %></.label>
+      <.label for={@id}><%= @label %></.label>
       <input
         type={@type}
         name={@name}
