@@ -50,9 +50,10 @@ defmodule DevshopsEtWeb.SubmissionLive.Register do
 
   defp init_submission(socket) do
     submission = %Submission{}
+
     socket
-      |> assign(:submission, submission)
-      |> assign(:form, submission |> Submissions.change_submission() |> to_form())
+    |> assign(:submission, submission)
+    |> assign(:form, submission |> Submissions.change_submission() |> to_form())
   end
 
   defp save_submission(socket, submission_params) do
@@ -61,7 +62,7 @@ defmodule DevshopsEtWeb.SubmissionLive.Register do
         {:noreply,
          socket
          |> put_flash(:info, "Submission created successfully")
-         |> init_submission() }
+         |> init_submission()}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}

@@ -23,7 +23,7 @@ defmodule DevshopsEtWeb.Router do
   scope "/", DevshopsEtWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", HomeLive.Index
     live "/register", SubmissionLive.Register
   end
 
