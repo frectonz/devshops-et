@@ -202,7 +202,7 @@ defmodule DevshopsEtWeb.CoreComponents do
   def simple_form(assigns) do
     ~H"""
     <.form :let={f} for={@for} as={@as} {@rest}>
-      <div class="mt-10 space-y-8 bg-white">
+      <div class="space-y-8">
         <%= render_slot(@inner_block, f) %>
         <div :for={action <- @actions} class="mt-2 flex items-center justify-between gap-6">
           <%= render_slot(action, f) %>
@@ -226,13 +226,14 @@ defmodule DevshopsEtWeb.CoreComponents do
 
   slot :inner_block, required: true
 
+  # <button class="px-6 py-3 border border-black box-shadow text-lg">Add a Company</button>
   def button(assigns) do
     ~H"""
     <button
       type={@type}
       class={[
-        "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
-        "text-sm font-semibold leading-6 text-white active:text-white/80",
+        "phx-submit-loading:opacity-75 bg-violet-300 py-3 px-6 box-shadow",
+        "text-lg leading-6 border border-black",
         @class
       ]}
       {@rest}
@@ -370,15 +371,15 @@ defmodule DevshopsEtWeb.CoreComponents do
   def input(assigns) do
     ~H"""
     <div>
-      <.label for={@id}><%= @label %></.label>
+      <.label for={@id} class="text-md"><%= @label %></.label>
       <input
         type={@type}
         name={@name}
         id={@id}
         value={Phoenix.HTML.Form.normalize_value(@type, @value)}
         class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
+          "mt-1 block w-full border-b border-black sm:text-lg sm:leading-6 bg-transparent box-shadow",
+          @errors == [] && "border-black",
           @errors != [] && "border-rose-400 focus:border-rose-400"
         ]}
         {@rest}

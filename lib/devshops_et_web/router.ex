@@ -24,6 +24,7 @@ defmodule DevshopsEtWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/register", SubmissionLive.Register
   end
 
   # Other scopes may use custom stacks.
@@ -31,10 +32,11 @@ defmodule DevshopsEtWeb.Router do
   #   pipe_through :api
   # end
 
-  scope "/dev" do
+  scope "/dev", DevshopsEtWeb do
     pipe_through [:browser, :admins_only]
 
-    live "/metrics", DevshopsEtWeb.MetricLive.Index, :index
+    live "/metrics", MetricLive.Index, :index
+    live "/submissions", SubmissionLive.Index, :index
     live_dashboard "/dashboard", metrics: DevshopsEtWeb.Telemetry
     forward "/mailbox", Plug.Swoosh.MailboxPreview
   end
