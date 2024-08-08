@@ -58,7 +58,9 @@ defmodule DevshopsEtWeb.SubmissionLive.Register do
 
   defp save_submission(socket, submission_params) do
     case Submissions.create_submission(submission_params) do
-      {:ok, _submission} ->
+      {:ok, submission} ->
+        Task.start(fn -> send_telegram_message(submission) end)
+
         {:noreply,
          socket
          |> put_flash(:info, "Submission created successfully")
@@ -67,5 +69,21 @@ defmodule DevshopsEtWeb.SubmissionLive.Register do
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}
     end
+  end
+
+  defp send_telegram_message(submission) do
+    Telegex.send_message(
+      Application.get_env(:devshops_et, :admin_chat_id),
+      """
+      <b>New Submission</b>
+
+      <b>Name</b>
+      #{submission.name}
+
+      <b>URL</b>
+      #{submission.url}
+      """,
+      parse_mode: "html"
+    )
   end
 end

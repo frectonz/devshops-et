@@ -20,6 +20,8 @@ if System.get_env("PHX_SERVER") do
   config :devshops_et, DevshopsEtWeb.Endpoint, server: true
 end
 
+config :devshops_et, admin_chat_id: System.get_env("ADMIN_GROUP_CHAT_ID") |> String.to_integer()
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||
