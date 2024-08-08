@@ -16,12 +16,12 @@ defmodule DevshopsEtWeb.SubmissionLive.Register do
       <div class="flex items-start justify-center flex-col gap-8">
         <h1 class="text-5xl">Add a Company to the Catalog.</h1>
         <p class="text-xl">
-          Your submission will be sent to the admins. The comapny will be listed on the website after verification.
+          Your submission will be sent to the admins. The company will be listed on the website after verification.
         </p>
 
         <.simple_form for={@form} id="submission-form" phx-change="validate" phx-submit="save">
-          <.input field={@form[:name]} type="text" label="Name" />
-          <.input field={@form[:url]} type="url" label="URL" />
+          <.input field={@form[:name]} type="text" label="Name" placeholder="Name" />
+          <.input field={@form[:url]} type="url" label="URL" placeholder="URL" />
           <:actions>
             <.button phx-disable-with="Saving...">Send Submission</.button>
           </:actions>
