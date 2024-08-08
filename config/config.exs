@@ -33,7 +33,6 @@ config :devshops_et, DevshopsEt.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configures telegram handler
 config :telegex, caller_adapter: Finch
-config :telegex, token: System.get_env("BOT_TOKEN")
 
 # Configure esbuild (the version is required)
 config :esbuild,

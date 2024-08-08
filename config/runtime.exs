@@ -20,6 +20,8 @@ if System.get_env("PHX_SERVER") do
   config :devshops_et, DevshopsEtWeb.Endpoint, server: true
 end
 
+# Telegram bot suff
+config :telegex, token: System.get_env("BOT_TOKEN")
 config :devshops_et, admin_chat_id: System.get_env("ADMIN_GROUP_CHAT_ID") |> String.to_integer()
 
 if config_env() == :prod do
