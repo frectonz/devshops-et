@@ -1,7 +1,7 @@
 { lib, myEnv, nix-gitignore, tailwindcss, esbuild, ... }:
 let
   pname = "devshops_et";
-  version = "0.1.6";
+  version = "0.1.7";
   src = nix-gitignore.gitignoreSource [
     "/flake.nix"
     "/flake.lock"
@@ -13,7 +13,7 @@ let
   mixDeps = fetchMixDeps {
     pname = "${pname}-mix-deps";
     inherit version src;
-    hash = "sha256-Pp/n13/f2n4/GVsQH0Kogi9fitrl3LvBovQNysQB/FY=";
+    hash = "sha256-lDdGuD7XF39wF7zB8XBZ0QK+zlBoc7NnMNOnm/fjBpQ=";
     HEX_HTTP_TIMEOUT = 10000;
   };
 
