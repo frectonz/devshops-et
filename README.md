@@ -13,6 +13,8 @@ docker run -p 4000:4000 \
             -e SECRET_KEY_BASE="generate this with `mix phx.gen.secret`" \
             -e AUTH_USERNAME="me" \
             -e AUTH_PASSWORD="password" \
+            -e BOT_TOKEN="the admin telegram bot token" \
+            -e ADMIN_GROUP_CHAT_ID="telegram group id to send messages to" \
             frectonz/devshops_et
 ```
 
