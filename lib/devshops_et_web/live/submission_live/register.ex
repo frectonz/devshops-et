@@ -6,7 +6,7 @@ defmodule DevshopsEtWeb.SubmissionLive.Register do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket |> init_submission()}
+    {:ok, socket |> assign(:page_title, "Register a Company") |> init_submission()}
   end
 
   @impl true
