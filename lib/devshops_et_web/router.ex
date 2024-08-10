@@ -24,6 +24,7 @@ defmodule DevshopsEtWeb.Router do
     pipe_through :browser
 
     live "/", HomeLive.Index
+    live "/contact", HomeLive.Contact
     live "/register", SubmissionLive.Register
   end
 
