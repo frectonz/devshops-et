@@ -39,4 +39,5 @@ npm-debug.log
 /assets/node_modules/
 
 .devenv
+.direnv
 .envrc
