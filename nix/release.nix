@@ -13,7 +13,7 @@ let
   mixDeps = fetchMixDeps {
     pname = "${pname}-mix-deps";
     inherit version src;
-    hash = "sha256-1sYJzs7NDu6rMxcZEDMf1KhTBZ5bJzXYjUpQWP66dwY=";
+    hash = "sha256-au/ewkcmJctQmTOaiDJHRYHmWTOROeh2/GbthQydyx4=";
     HEX_HTTP_TIMEOUT = 10000;
   };
 
