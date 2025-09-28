@@ -1,19 +1,18 @@
-{ nixpkgs
-, release
-, hostSystem
+{ release
 , dockerTools
 , glibcLocalesUtf8
 , coreutils
 , curl
+, buildPackages
 , ...
 }:
 let
-  hostPkgs = import nixpkgs { system = hostSystem; };
   name = release.pname;
+  docker = dockerTools.override {
+    writePython3 = buildPackages.writers.writePython3;
+  };
 in
-(dockerTools.override {
-  writePython3 = hostPkgs.buildPackages.writers.writePython3;
-}).streamLayeredImage {
+docker.buildLayeredImage {
   inherit name;
   tag = "latest";
   created = "now";
@@ -21,10 +20,7 @@ in
   contents = [
     dockerTools.caCertificates
     dockerTools.binSh
-
     coreutils
-
-    # healthcheck related packages
     curl
   ];
 
