@@ -36,7 +36,7 @@
 
             version = "0.1.9";
             deploy = pkgs.writeShellScriptBin "deploy" ''
-              ${pkgs.skopeo}/bin/skopeo --insecure-policy copy docker-archive:${docker} docker://docker.io/frectonz/devshops_et:${version} --dest-creds="frectonz:$ACCESS_TOKEN"
+              ${pkgs.skopeo}/bin/skopeo --insecure-policy copy docker-archive:${image} docker://docker.io/frectonz/devshops_et:${version} --dest-creds="frectonz:$ACCESS_TOKEN"
               ${pkgs.skopeo}/bin/skopeo --insecure-policy copy docker://docker.io/frectonz/devshops_et:${version} docker://docker.io/frectonz/devshops_et:latest --dest-creds="frectonz:$ACCESS_TOKEN"
             '';
           in
