@@ -1,7 +1,7 @@
 { lib, myEnv, nix-gitignore, tailwindcss, esbuild, ... }:
 let
   pname = "devshops_et";
-  version = "0.1.9";
+  version = "0.1.10";
   src = nix-gitignore.gitignoreSource [
     "/flake.nix"
     "/flake.lock"
