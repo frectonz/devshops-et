@@ -35,8 +35,13 @@
               inherit release;
               hostSystem = pkgs.system;
             } // inputs);
+
+            version = "0.1.8";
+            deploy = pkgs.writeShellScriptBin "deploy" ''
+              ${pkgs.skopeo}/bin/skopeo --insecure-policy copy docker-archive:${image} docker://docker.io/frectonz/devshops_et:${version} --dest-creds="frectonz:$ACCESS_TOKEN"
+            '';
           in
-          { inherit release image; };
+          { inherit release image deploy; };
 
         formatter = pkgs.nixpkgs-fmt;
       }
