@@ -16,5 +16,5 @@ jobs:
         run: nix build .#release
 
       - name: Build Docker Image
-        run: nix build .#docker-image-triggered-by-x86_64-linux
+        run: nix build .#image
 

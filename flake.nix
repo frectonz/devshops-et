@@ -9,15 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-
-    devenv-nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
-    devenv = {
-      url = "github:cachix/devenv";
-      inputs.nixpkgs.follows = "devenv-nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, beam-utils, devenv, ... }@inputs:
+  outputs = { self, nixpkgs, flake-utils, beam-utils, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
@@ -27,44 +21,22 @@
             (import ./nix/overlay.nix)
           ];
         };
-
-        devenv-shell = devenv.lib.mkShell {
-          inherit inputs pkgs;
-          modules = [
-            {
-              services.postgres = {
-                enable = true;
-                createDatabase = false;
-                listen_addresses = "127.0.0.1";
-                port = 5432;
-              };
-            }
-          ];
-        };
-
-        devenv-up = self.devShells.${system}.devenv.config.procfileScript;
       in
       {
         devShells = {
           default = pkgs.myCallPackage ./nix/shell.nix { };
-          devenv = devenv-shell;
         };
 
         packages =
           let
             release = pkgs.myCallPackage ./nix/release.nix { };
 
-            buildDockerImage = hostSystem: pkgs.myCallPackage ./nix/docker-image.nix ({
-              inherit release hostSystem;
+            image = pkgs.myCallPackage ./nix/docker-image.nix ({
+              inherit release;
+              hostSystem = pkgs.system;
             } // inputs);
-            docker-images = builtins.listToAttrs (map
-              (hostSystem: {
-                name = "docker-image-triggered-by-${hostSystem}";
-                value = buildDockerImage hostSystem;
-              })
-              flake-utils.lib.defaultSystems);
           in
-          { inherit release devenv-up; } // docker-images;
+          { inherit release image; };
 
         formatter = pkgs.nixpkgs-fmt;
       }
