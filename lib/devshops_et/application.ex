@@ -24,17 +24,7 @@ defmodule DevshopsEt.Application do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: DevshopsEt.Supervisor]
-    {:ok, sup} = Supervisor.start_link(children, opts)
-
-    # Run migrations automatically when starting
-    run_migrations()
-
-    {:ok, sup}
-  end
-
-  defp run_migrations do
-    path = Application.app_dir(:devshops_et, "priv/repo/migrations")
-    Ecto.Migrator.run(DevshopsEt.Repo, path, :up, all: true)
+    Supervisor.start_link(children, opts)
   end
 
   # Tell Phoenix to update the endpoint configuration
